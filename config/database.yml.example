@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  database: search
+  username: ''
+  password: ''
+  host: localhost
+  pool: 5
+  timeout: 5000
+
+test:
+  adapter: postgresql
+  database: search-test
+  username: ''
+  password: ''
+  host: localhost
+  pool: 5
+  timeout: 5000
