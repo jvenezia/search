@@ -12,11 +12,13 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'foreman'
 gem 'ruby-progressbar'
+gem 'metamagic'
 
 # Assets
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
+gem 'haml-rails', '~> 0.9'
 
 gem 'react-rails'
 gem 'turbolinks', '~> 5'
