@@ -1,5 +1,9 @@
 module Api::V1
   class AppsController < ApiController
+    def index
+      @apps = App.limit(100)
+    end
+
     def create
       @app = App.create app_params
 

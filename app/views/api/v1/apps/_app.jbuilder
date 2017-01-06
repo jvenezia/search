@@ -1,1 +1,1 @@
-json.extract! app, :name, :category, :image, :link, :rank
+json.extract! app, :id, :name, :category, :image, :link, :rank
