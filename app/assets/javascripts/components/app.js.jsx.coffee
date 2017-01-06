@@ -2,8 +2,12 @@ class @App extends React.Component
   constructor: (props) ->
     @app = props.app
 
+  removeDeadImage: (event) ->
+    event.target.src = ''
+
   render: ->
-    `<div className="app">
-        <div>{this.app.name}</div>
-        <img src={this.app.image}/>
-    </div>`
+    `<a className="app" href={this.app.link} target="_blank">
+        <div className="name">{this.app.name}</div>
+        <div className="category">{this.app.category}</div>
+        <img src={this.app.image} onError={this.removeDeadImage}/>
+    </a>`

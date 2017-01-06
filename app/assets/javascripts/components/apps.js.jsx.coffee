@@ -13,4 +13,6 @@ class @Apps extends React.Component
     apps = @state.apps.map (app) =>
       React.createElement App, key: app.id, app: app
 
-    `<div id="apps">{apps}</div>`
+    `<div className="container">
+        <div id="apps">{apps}</div>
+    </div>`

@@ -1,7 +1,7 @@
 module Api::V1
   class AppsController < ApiController
     def index
-      @apps = App.limit(100)
+      @apps = App.order(:rank).limit(50)
     end
 
     def create

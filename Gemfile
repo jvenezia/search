@@ -19,10 +19,12 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'haml-rails', '~> 0.9'
-
 gem 'react-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'font-awesome-rails'
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'compass-rails'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
