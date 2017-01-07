@@ -14,6 +14,7 @@ gem 'foreman'
 gem 'ruby-progressbar'
 gem 'metamagic'
 gem 'validate_url'
+gem 'algoliasearch-rails'
 
 # Assets
 gem 'sass-rails', '~> 5.0'
