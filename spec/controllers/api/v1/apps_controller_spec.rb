@@ -8,8 +8,8 @@ describe Api::V1::AppsController, type: :controller do
   describe 'GET index' do
     let!(:apps) { create_list :app, 2 }
 
-    before { expect(App).to receive(:order).with(:rank).and_return(App) }
-    before { expect(App).to receive(:limit).with(50).and_return(apps) }
+    before { expect(App).to receive(:order).with(created_at: :desc).and_return(App) }
+    before { expect(App).to receive(:limit).with(20).and_return(apps) }
 
     before { get :index }
 

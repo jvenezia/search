@@ -2,6 +2,14 @@
 
 #apps
   margin-top: 40px
+  #app-form
+    margin-bottom: 20px
+    .actions
+      text-align: right
+      button
+        margin-left: 8px
+    input
+      margin-bottom: 10px
   a.app
     position: relative
     height: 80px
@@ -9,6 +17,7 @@
     padding: 10px 80px 10px 10px
     margin-bottom: 20px
     display: block
+    background: #f9f9f9
     color: black
     @include border-radius(5px)
     .name
@@ -19,9 +28,10 @@
     .category
       display: inline-block
       margin-top: 6px
-      background: #e8e8e8
+      background: #8e8e8e
+      color: white
       padding: 2px 6px
-      @include border-radius(10px)
+      @include border-radius(24px)
     img
       position: absolute
       right: 10px
@@ -30,5 +40,5 @@
       @include border-radius(10px)
     &:hover, &:focus
       text-decoration: none
-      background: #f9f9f9
+      background: #f2f2f2
       cursor: pointer
