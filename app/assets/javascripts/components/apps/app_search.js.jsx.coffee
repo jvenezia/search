@@ -1,7 +1,6 @@
 class @AppSearch extends React.Component
   constructor: (props) ->
     super props
-    @state = {}
 
   handleChange: (event) =>
     query = event.target.value
@@ -11,12 +10,12 @@ class @AppSearch extends React.Component
       @props.searchApps(event.target.value)
 
   render: ->
-    if @props.loading
+    if @props.isLoading
       icon = `<i className="fa fa-spinner fa-pulse"></i>`
     else
       icon = `<i className="fa fa-search"></i>`
 
     `<div id="app-search">
-        <input onChange={this.handleChange} placeholder="Search..." className="form-control" autoFocus/>
+        <input onChange={this.handleChange} placeholder="Search..." className="form-control" type="text" autoFocus/>
         {icon}
     </div>`

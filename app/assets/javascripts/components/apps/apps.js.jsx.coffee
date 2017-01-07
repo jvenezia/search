@@ -2,24 +2,24 @@ class @Apps extends React.Component
   constructor: (props) ->
     super props
     algoliaIndex = algoliasearch(@props.algolia.applicationId, @props.algolia.apiKey).initIndex(@props.algolia.indexName)
-    @state = {apps: [], algoliaIndex: algoliaIndex}
+    @state = {apps: [], isLoading: false, algoliaIndex: algoliaIndex}
 
   componentDidMount: ->
     @loadApps()
 
   loadApps: =>
-    @setState loading: true
+    @setState isLoading: true
     fetch('/api/1/apps').then((response) ->
       response.json()
     ).then((apps) =>
-      @setState apps: apps, loading: false
+      @setState apps: apps, isLoading: false
     )
 
   searchApps: (query) =>
-    @setState loading: true
+    @setState isLoading: true
     @state.algoliaIndex.search query, (error, content) =>
       apps = content.hits
-      @setState apps: apps, loading: false
+      @setState apps: apps, isLoading: false
 
   addApp: (app) =>
     app.highlight = true
@@ -37,8 +37,8 @@ class @Apps extends React.Component
 
     `<div className="container">
         <div id="apps">
+            <AppSearch searchApps={this.searchApps} loadApps={this.loadApps} isLoading={this.state.isLoading}/>
             <AppForm addApp={this.addApp}/>
-            <AppSearch searchApps={this.searchApps} loadApps={this.loadApps} loading={this.state.loading}/>
             {apps}
         </div>
     </div>`

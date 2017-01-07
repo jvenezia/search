@@ -1,3 +1,6 @@
+@import "compass/css3/border-radius"
+@import "compass/css3/user-interface"
+
 @import "bootstrap-sprockets"
 @import "bootstrap"
 @import "font-awesome"
@@ -7,3 +10,13 @@
 @media (min-width: 1200px)
   .container
     width: 550px
+
+body
+  background: #32373D
+
+input[type="text"]
+  background: #848b94
+  border-color: #4e4e4e
+  color: #42464e
+  @include input-placeholder
+    color: #616773

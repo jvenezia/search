@@ -1,42 +1,44 @@
-@import "compass/css3/border-radius"
-
 #apps
   margin-top: 40px
+  #app-search
+    position: relative
+    margin-bottom: 30px
+    input
+      font-size: 20px
+      height: 46px
+      @include border-radius(46px)
+    i
+      position: absolute
+      right: 18px
+      font-size: 26px
+      color: #616773
+      &.fa-spinner
+        top: 10px
+      &.fa-search
+        top: 9px
   #app-form
-    margin-bottom: 20px
+    background: #4a535d
+    padding: 10px
+    @include border-radius(5px)
+    margin-bottom: 30px
     .actions
-      text-align: right
+      text-align: center
       button
         margin-left: 8px
     input
       margin-bottom: 10px
-  #app-search
-    position: relative
-    margin-bottom: 20px
-    input
-      @include border-radius(20px)
-    i
-      position: absolute
-      right: 14px
-      font-size: 22px
-      color: #9e9e9e
-      &.fa-spinner
-        top: 6px
-      &.fa-search
-        top: 5px
   .app-wrapper
     position: relative
     a.app
       position: relative
       height: 100px
-      border: 1px solid #dedede
       padding: 10px 100px 10px 10px
       margin-bottom: 20px
       display: block
-      background: #f9f9f9
+      background: #4a535d
       @include border-radius(5px)
       .name
-        color: black
+        color: #C5C9CC
         font-size: 18px
         white-space: nowrap
         overflow: hidden
@@ -44,7 +46,7 @@
       .category
         display: inline-block
         margin-top: 6px
-        background: #8e8e8e
+        background: #313c48
         color: white
         padding: 2px 6px
         @include border-radius(24px)
@@ -55,19 +57,20 @@
         max-height: 78px
         @include border-radius(10px)
       &.highlight
-        background: #fbf5d3
+        background: #585853
       &:hover, &:focus
         text-decoration: none
-        background: #f2f2f2
+        background: #404750
         cursor: pointer
         &.highlight
-          background: #fbf5d3
+          background: #4b4b47
     .actions
       position: absolute
       bottom: 8px
       left: 10px
       .remove
-        color: #a2a2a2
-        text-decoration: underline
+        color: #757f86
+        i
+          margin-right: 4px
         &:hover, &:focus
           cursor: pointer

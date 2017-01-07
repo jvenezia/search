@@ -25,7 +25,10 @@ class @App extends React.Component
             <img src={this.state.app.image} onError={this.removeDeadImage}/>
         </a>
         <div className='actions'>
-            <a className="remove" onClick={this.remove}>Remove</a>
+            <a className="remove" onClick={this.remove}>
+                <i className="fa fa-remove"></i>
+                Remove
+            </a>
         </div>
     </div>
     `
