@@ -12,7 +12,9 @@ class @Apps extends React.Component
 
   addApp: (app) =>
     app.highlight = true
-    @setState {apps: @state.apps.unshift(app)}
+    apps = Object.assign([], @state.apps)
+    apps.unshift(app)
+    @setState {apps: apps}
 
   removeApp: (appToRemove) =>
     apps = @state.apps.filter (app) -> app.id != appToRemove.id
