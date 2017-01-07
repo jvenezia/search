@@ -7,7 +7,9 @@ class @App extends React.Component
     event.target.src = ''
 
   render: ->
-    `<a className="app" href={this.state.app.link} target="_blank">
+    className = 'app'
+    className = className.concat(' highlight') if @state.app.highlight
+    `<a className={className} href={this.state.app.link} target="_blank">
         <div className="name">{this.state.app.name}</div>
         <div className="category">{this.state.app.category}</div>
         <img src={this.state.app.image} onError={this.removeDeadImage}/>

@@ -11,6 +11,7 @@ class @Apps extends React.Component
     )
 
   addApp: (app) =>
+    app.highlight = true
     @setState {app: @state.apps.unshift(app)}
 
   render: ->
