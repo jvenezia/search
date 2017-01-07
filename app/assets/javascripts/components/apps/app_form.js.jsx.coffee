@@ -1,7 +1,7 @@
 class @AppForm extends React.Component
   constructor: (props) ->
     super props
-    @defaultApp = {name: '', link: '', image: '', category: '', rank: ''}
+    @defaultApp = {name: '', link: '', image: '', category: '', rank: '', errors: {}}
     @state = {isVisible: false, app: Object.assign({}, @defaultApp)}
 
   resetApp: ->
@@ -29,7 +29,9 @@ class @AppForm extends React.Component
     ).then((response) =>
       response.json()
     ).then((app) =>
-      unless app.errors
+      if app.errors
+        @setState {app: Object.assign({}, @state.app, {errors: app.errors})}
+      else
         @props.addApp(app)
         @hide()
         @resetApp()
@@ -38,11 +40,11 @@ class @AppForm extends React.Component
   render: ->
     if @state.isVisible
       `<form id="app-form" onSubmit={this.handleSubmit}>
-          <FormField onChange={this.handleChange} value={this.state.app.name} required={true} name="name" placeholder="Name" type="text" autoFocus={true}/>
-          <FormField onChange={this.handleChange} value={this.state.app.link} required={true} name="link" placeholder="Link" type="text"/>
-          <FormField onChange={this.handleChange} value={this.state.app.category} required={true} name="category" placeholder="Category" type="text"/>
-          <FormField onChange={this.handleChange} value={this.state.app.rank} required={true} name="rank" placeholder="Rank" type="number"/>
-          <FormField onChange={this.handleChange} value={this.state.app.image} name="image" placeholder="Image" type="text"/>
+          <FormField onChange={this.handleChange} value={this.state.app.name} errors={this.state.app.errors.name} required={true} name="name" placeholder="Name" type="text" autoFocus={true}/>
+          <FormField onChange={this.handleChange} value={this.state.app.link} errors={this.state.app.errors.link} required={true} name="link" placeholder="Link" type="text"/>
+          <FormField onChange={this.handleChange} value={this.state.app.category} errors={this.state.app.errors.category} required={true} name="category" placeholder="Category" type="text"/>
+          <FormField onChange={this.handleChange} value={this.state.app.rank} errors={this.state.app.errors.rank} required={true} name="rank" placeholder="Rank" type="number"/>
+          <FormField onChange={this.handleChange} value={this.state.app.image} errors={this.state.app.errors.image} name="image" placeholder="Image" type="text"/>
           <div className="actions">
               <button type="button" onClick={this.hide} className="btn btn-secondary">Cancel</button>
               <button type="submit" className="btn btn-primary">Add</button>
