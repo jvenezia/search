@@ -2,22 +2,23 @@ class @AppForm extends React.Component
   constructor: (props) ->
     super props
     @defaultApp = {name: '', link: '', image: '', category: '', rank: ''}
-    @state = {showForm: false, app: Object.assign({}, @defaultApp)}
+    @state = {isVisible: false, app: Object.assign({}, @defaultApp)}
 
   resetApp: ->
     @setState {app: Object.assign({}, @defaultApp)}
 
-  showForm: =>
-    @setState {showForm: true}
-
-  hideForm: (event) =>
+  show: (event) =>
     event.preventDefault() if event
-    @setState {showForm: false}
+    @setState {isVisible: true}
+
+  hide: (event) =>
+    event.preventDefault() if event
+    @setState {isVisible: false}
 
   handleChange: (event) =>
-    newApp = {}
-    newApp[event.target.name] = event.target.value
-    @setState {app: Object.assign({}, @state.app, newApp)}
+    app = {}
+    app[event.target.name] = event.target.value
+    @setState {app: Object.assign({}, @state.app, app)}
 
   handleSubmit: (event) =>
     event.preventDefault()
@@ -30,12 +31,12 @@ class @AppForm extends React.Component
     ).then((app) =>
       unless app.errors
         @props.addApp(app)
-        @hideForm()
+        @hide()
         @resetApp()
     )
 
   render: ->
-    if @state.showForm
+    if @state.isVisible
       `<form id="app-form" onSubmit={this.handleSubmit}>
           <input onChange={this.handleChange} name="name" value={this.state.app.name} type="text" placeholder="Name" className="form-control" autoFocus/>
           <input onChange={this.handleChange} name="link" value={this.state.app.link} type="text" placeholder="Link" className="form-control"/>
@@ -43,13 +44,13 @@ class @AppForm extends React.Component
           <input onChange={this.handleChange} name="rank" value={this.state.app.rank} type="number" placeholder="Rank" className="form-control"/>
           <input onChange={this.handleChange} name="image" value={this.state.app.image} type="text" placeholder="Image" className="form-control"/>
           <div className="actions">
-              <button type="button" onClick={this.hideForm} className="btn btn-secondary">Cancel</button>
+              <button type="button" onClick={this.hide} className="btn btn-secondary">Cancel</button>
               <button type="submit" className="btn btn-primary">Add</button>
           </div>
       </form>`
     else
       `<div id="app-form">
           <div className="actions">
-              <button type="button" onClick={this.showForm} className="btn btn-primary">Add an app</button>
+              <button type="button" onClick={this.show} className="btn btn-primary">Add an app</button>
           </div>
       </div>`
