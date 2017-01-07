@@ -12,11 +12,15 @@ class @Apps extends React.Component
 
   addApp: (app) =>
     app.highlight = true
-    @setState {app: @state.apps.unshift(app)}
+    @setState {apps: @state.apps.unshift(app)}
+
+  removeApp: (appToRemove) =>
+    apps = @state.apps.filter (app) -> app.id != appToRemove.id
+    @setState {apps: apps}
 
   render: ->
     apps = @state.apps.map (app) =>
-      React.createElement App, key: app.id, app: app
+      React.createElement App, key: app.id, app: app, removeApp: @removeApp
 
     `<div className="container">
         <div id="apps">

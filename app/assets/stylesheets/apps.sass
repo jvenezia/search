@@ -10,39 +10,50 @@
         margin-left: 8px
     input
       margin-bottom: 10px
-  a.app
+  .app-wrapper
     position: relative
-    height: 80px
-    border: 1px solid #dedede
-    padding: 10px 80px 10px 10px
-    margin-bottom: 20px
-    display: block
-    background: #f9f9f9
-    color: black
-    @include border-radius(5px)
-    .name
-      font-size: 18px
-      white-space: nowrap
-      overflow: hidden
-      text-overflow: ellipsis
-    .category
-      display: inline-block
-      margin-top: 6px
-      background: #8e8e8e
-      color: white
-      padding: 2px 6px
-      @include border-radius(24px)
-    img
-      position: absolute
-      right: 10px
-      top: 10px
-      max-height: 57px
-      @include border-radius(10px)
-    &.highlight
-      background: #fbf5d3
-    &:hover, &:focus
-      text-decoration: none
-      background: #f2f2f2
-      cursor: pointer
+    a.app
+      position: relative
+      height: 100px
+      border: 1px solid #dedede
+      padding: 10px 100px 10px 10px
+      margin-bottom: 20px
+      display: block
+      background: #f9f9f9
+      @include border-radius(5px)
+      .name
+        color: black
+        font-size: 18px
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+      .category
+        display: inline-block
+        margin-top: 6px
+        background: #8e8e8e
+        color: white
+        padding: 2px 6px
+        @include border-radius(24px)
+      img
+        position: absolute
+        right: 10px
+        top: 10px
+        max-height: 78px
+        @include border-radius(10px)
       &.highlight
         background: #fbf5d3
+      &:hover, &:focus
+        text-decoration: none
+        background: #f2f2f2
+        cursor: pointer
+        &.highlight
+          background: #fbf5d3
+    .actions
+      position: absolute
+      bottom: 8px
+      left: 10px
+      .remove
+        color: #a2a2a2
+        text-decoration: underline
+        &:hover, &:focus
+          cursor: pointer
