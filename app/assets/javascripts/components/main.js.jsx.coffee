@@ -1,3 +1,6 @@
 class @Main extends React.Component
+  constructor: (props) ->
+    super(props)
+
   render: ->
-    `<Apps/>`
+    `<Apps algolia={this.props.algolia}/>`

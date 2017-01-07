@@ -16,7 +16,7 @@ class App < ApplicationRecord
   end
 
   algoliasearch index_name: "search_#{Rails.env}", disable_indexing: Rails.env.test? do
-    attribute :name, :category, :link, :image, :rank
+    attribute :id, :name, :category, :link, :image, :rank, :created_at, :updated_at
     searchableAttributes %w(name category)
     customRanking ['asc(rank)']
   end
