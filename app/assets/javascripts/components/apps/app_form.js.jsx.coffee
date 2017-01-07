@@ -43,7 +43,7 @@ class @AppForm extends React.Component
           <FormField onChange={this.handleChange} value={this.state.app.name} errors={this.state.app.errors.name} required={true} name="name" placeholder="Name" type="text" autoFocus={true}/>
           <FormField onChange={this.handleChange} value={this.state.app.link} errors={this.state.app.errors.link} required={true} name="link" placeholder="Link" type="text"/>
           <FormField onChange={this.handleChange} value={this.state.app.category} errors={this.state.app.errors.category} required={true} name="category" placeholder="Category" type="text"/>
-          <FormField onChange={this.handleChange} value={this.state.app.rank} errors={this.state.app.errors.rank} required={true} name="rank" placeholder="Rank" type="number"/>
+          <FormField onChange={this.handleChange} value={this.state.app.rank} errors={this.state.app.errors.rank} required={true} name="rank" placeholder="Rank" type="text"/>
           <FormField onChange={this.handleChange} value={this.state.app.image} errors={this.state.app.errors.image} name="image" placeholder="Image" type="text"/>
           <div className="actions">
               <button type="button" onClick={this.hide} className="btn btn-secondary">Cancel</button>

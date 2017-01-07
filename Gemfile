@@ -13,6 +13,7 @@ gem 'puma', '~> 3.0'
 gem 'foreman'
 gem 'ruby-progressbar'
 gem 'metamagic'
+gem 'validate_url'
 
 # Assets
 gem 'sass-rails', '~> 5.0'
