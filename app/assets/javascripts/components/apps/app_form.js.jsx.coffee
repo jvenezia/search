@@ -14,7 +14,7 @@ class @AppForm extends React.Component
     event.preventDefault() if event
     @setState isVisible: false
 
-  inputChange: (event) =>
+  handleChange: (event) =>
     app = {}
     app[event.target.name] = event.target.value
     @setState app: Object.assign(new AppModel, @state.app, app)
@@ -40,11 +40,11 @@ class @AppForm extends React.Component
         submitText = 'Add'
 
       `<form id="app-form" onSubmit={this.submit}>
-          <FormField onChange={this.inputChange} value={this.state.app.name || ''} errors={this.state.app.errors.name} required={true} name="name" placeholder="Name" type="text" autoFocus={true}/>
-          <FormField onChange={this.inputChange} value={this.state.app.link || ''} errors={this.state.app.errors.link} required={true} name="link" placeholder="Link" type="text"/>
-          <FormField onChange={this.inputChange} value={this.state.app.category || ''} errors={this.state.app.errors.category} required={true} name="category" placeholder="Category" type="text"/>
-          <FormField onChange={this.inputChange} value={this.state.app.rank || ''} errors={this.state.app.errors.rank} required={true} name="rank" placeholder="Rank" type="text"/>
-          <FormField onChange={this.inputChange} value={this.state.app.image || ''} errors={this.state.app.errors.image} name="image" placeholder="Image" type="text"/>
+          <FormField onChange={this.handleChange} value={this.state.app.name || ''} errors={this.state.app.errors.name} required={true} name="name" placeholder="Name" type="text" autoFocus={true}/>
+          <FormField onChange={this.handleChange} value={this.state.app.link || ''} errors={this.state.app.errors.link} required={true} name="link" placeholder="Link" type="text"/>
+          <FormField onChange={this.handleChange} value={this.state.app.category || ''} errors={this.state.app.errors.category} required={true} name="category" placeholder="Category" type="text"/>
+          <FormField onChange={this.handleChange} value={this.state.app.rank || ''} errors={this.state.app.errors.rank} required={true} name="rank" placeholder="Rank" type="text"/>
+          <FormField onChange={this.handleChange} value={this.state.app.image || ''} errors={this.state.app.errors.image} name="image" placeholder="Image" type="text"/>
           <div className="actions">
               <button type="button" onClick={this.hide} className="btn btn-secondary">Cancel</button>
               <button type="submit" className="btn btn-primary">{submitText}</button>

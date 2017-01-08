@@ -12,15 +12,21 @@ class window.AppModel
   @all: (options = {}) ->
     url = '/api/1/apps'
     url += "?page=#{options.page}" if options.page
-    fetch(url).then((response) => response.json()).then (appsJson) =>
+    maxAppCount = 0
+    fetch(url).then((response) =>
+      maxAppCount = response.headers.get('Total')
+      response.json()
+    ).then (appsJson) =>
       apps = appsJson.map (app) => new AppModel(app)
-      options.done apps
+      options.done apps, maxAppCount
 
   @search: (query, options = {}) ->
-    algoliaIndex.search query, (error, content) =>
+    page = if options.page then options.page - 1 else 0
+    algoliaIndex.search query, {page: page}, (error, content) =>
+      maxAppCount = content.nbHits
       apps = content.hits.map (hit) =>
         new AppModel Object.assign({}, hit, {name: hit._highlightResult.name.value, category: hit._highlightResult.category.value})
-      options.done apps
+      options.done apps, maxAppCount
 
   save: (options = {}) ->
     fetch('/api/1/apps',
