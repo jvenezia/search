@@ -2,7 +2,8 @@
 
 Sample app using [Algolia](https://www.algolia.com/) with `Rails` and `React.js` with [react-rails](https://github.com/reactjs/react-rails) gem.
 
-Try it live: [search-production.herokuapp.com](http://search-production.herokuapp.com/)
+Try it live: [search-production.herokuapp.com](http://search-production.herokuapp.com/).
+Feel free to play with it, the database is reset every day.
  
 ## Getting started
 
@@ -34,7 +35,7 @@ Try it live: [search-production.herokuapp.com](http://search-production.herokuap
 
 5. Import dataset. This will also populate your Algolia index.
 
-        rake import_app_dataset
+        rake reset_database
 
 6. Run server with foreman.
 
