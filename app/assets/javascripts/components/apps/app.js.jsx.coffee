@@ -17,7 +17,6 @@ class @App extends React.Component
     event.target.src = @defaultImageUrl
 
   render: ->
-    console.log @state.app.image
     if @state.app.image
       imageUrl = @state.app.image
     else
