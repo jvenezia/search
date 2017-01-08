@@ -19,28 +19,21 @@ class @Apps extends React.Component
       @loadNextApps()
 
     if scrollPosition > 2000
-      @setState {displayScrollTopButton: true}
+      @setState displayScrollTopButton: true
     else
-      @setState {displayScrollTopButton: false}
+      @setState displayScrollTopButton: false
 
   scrollTop: =>
     smoothScroll.animateScroll(0)
 
   loadApps: =>
     @setState isLoading: true, query: '', page: 1
-    fetch('/api/1/apps').then((response) =>
-      response.json()
-    ).then((apps) =>
-      @setState apps: apps, isLoading: false
-    )
+    AppModel.all().then((apps) => @setState apps: apps, isLoading: false)
 
   loadNextApps: =>
     @setState isLoadingNextApps: true, isLoading: true
-    fetch("/api/1/apps?page=#{@state.page + 1}").then((response) =>
-      response.json()
-    ).then((apps) =>
-      @setState apps: @state.apps.concat(apps), isLoadingNextApps: false, isLoading: false, page: @state.page + 1
-    )
+    page = @state.page + 1
+    AppModel.all(page: page).then((apps) => @setState apps: @state.apps.concat(apps), isLoadingNextApps: false, isLoading: false, page: page)
 
   searchApps: (query) =>
     @setState isLoading: true, query: query

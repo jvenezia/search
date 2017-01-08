@@ -19,4 +19,5 @@
 #= require algoliasearch
 #= require smooth-scroll
 
+#= require_tree ./models
 #= require_tree .
