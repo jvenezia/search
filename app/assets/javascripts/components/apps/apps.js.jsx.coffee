@@ -16,7 +16,7 @@ class @Apps extends React.Component
     documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight)
 
     if !@state.query && !@state.isLoadingNextApps && scrollPosition >= documentHeight - 1000
-      @loadNextApps @state.page + 1
+      @loadNextApps()
 
     if scrollPosition > 2000
       @setState {displayScrollTopButton: true}
@@ -24,7 +24,7 @@ class @Apps extends React.Component
       @setState {displayScrollTopButton: false}
 
   scrollTop: =>
-    window.scrollTo(0, 0)
+    smoothScroll.animateScroll(0)
 
   loadApps: =>
     @setState isLoading: true, query: '', page: 1
@@ -34,9 +34,9 @@ class @Apps extends React.Component
       @setState apps: apps, isLoading: false
     )
 
-  loadNextApps: (page) =>
+  loadNextApps: =>
     @setState isLoadingNextApps: true, isLoading: true
-    fetch("/api/1/apps?page=#{page}").then((response) =>
+    fetch("/api/1/apps?page=#{@state.page + 1}").then((response) =>
       response.json()
     ).then((apps) =>
       @setState apps: @state.apps.concat(apps), isLoadingNextApps: false, isLoading: false, page: @state.page + 1

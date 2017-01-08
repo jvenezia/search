@@ -14,6 +14,9 @@
 #= require react
 #= require components
 #= require react_ujs
+
 #= require fetch
 #= require algoliasearch
+#= require smooth-scroll
+
 #= require_tree .
