@@ -1,11 +1,7 @@
 class @Apps extends React.Component
   constructor: (props) ->
     super props
-    algoliaIndex = algoliasearch(@props.algolia.applicationId, @props.algolia.apiKey).initIndex(@props.algolia.indexName)
-    @state = {
-      apps: [], page: 1, algoliaIndex: algoliaIndex,
-      isLoading: false, isLoadingNextApps: false, displayScrollTopButton: false
-    }
+    @state = {apps: [], page: 1, isLoading: false, isLoadingNextApps: false, displayScrollTopButton: false}
 
   componentDidMount: ->
     window.addEventListener('scroll', this.handleScroll)
@@ -28,19 +24,23 @@ class @Apps extends React.Component
 
   loadApps: =>
     @setState isLoading: true, query: '', page: 1
-    AppModel.all().then((apps) => @setState apps: apps, isLoading: false)
+    AppModel.all
+      done: (apps) =>
+        @setState apps: apps, isLoading: false
 
   loadNextApps: =>
     @setState isLoadingNextApps: true, isLoading: true
     page = @state.page + 1
-    AppModel.all(page: page).then((apps) => @setState apps: @state.apps.concat(apps), isLoadingNextApps: false, isLoading: false, page: page)
+    AppModel.all
+      page: page
+      done: (apps) =>
+        @setState apps: @state.apps.concat(apps), isLoadingNextApps: false, isLoading: false, page: page
 
   searchApps: (query) =>
     @setState isLoading: true, query: query
-    @state.algoliaIndex.search query, (error, content) =>
-      apps = content.hits.map (hit) =>
-        Object.assign({}, hit, {name: hit._highlightResult.name.value, category: hit._highlightResult.category.value})
-      @setState apps: apps, isLoading: false
+    AppModel.search query,
+      done: (apps) =>
+        @setState apps: apps, isLoading: false
 
   addApp: (app) =>
     app.highlight = true
