@@ -3,7 +3,7 @@ class @App extends React.Component
     super props
     @defaultImageUrl = '/default_app_icon.png'
 
-  remove: (event) =>
+  removeApp: (event) =>
     event.preventDefault() if event
     if confirm("Remove #{@props.app.name}?")
       fetch("/api/1/apps/#{@props.app.id}",
@@ -30,7 +30,7 @@ class @App extends React.Component
             <img src={imageUrl} onError={this.setDefaultImage}/>
         </a>
         <div className='actions'>
-            <a className="remove" onClick={this.remove}>
+            <a className="remove" onClick={this.removeApp}>
                 <i className="fa fa-remove"></i>
                 Remove
             </a>
