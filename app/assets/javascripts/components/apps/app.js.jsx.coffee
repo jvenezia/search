@@ -26,8 +26,8 @@ class @App extends React.Component
     className = className.concat(' highlight') if @state.app.highlight
     `<div className="app-wrapper">
         <a className={className} href={this.state.app.link} target="_blank">
-            <div className="name">{this.state.app.name}</div>
-            <div className="category">{this.state.app.category}</div>
+            <div className="name" dangerouslySetInnerHTML={{__html: this.state.app.name}}></div>
+            <div className="category" dangerouslySetInnerHTML={{__html: this.state.app.category}}></div>
             <img src={imageUrl} onError={this.setDefaultImage}/>
         </a>
         <div className='actions'>

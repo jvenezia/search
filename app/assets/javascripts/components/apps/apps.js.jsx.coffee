@@ -34,7 +34,9 @@ class @Apps extends React.Component
   searchApps: (query) =>
     @setState isLoading: true, query: query
     @state.algoliaIndex.search query, (error, content) =>
-      apps = content.hits
+      apps = content.hits.map (hit) =>
+        Object.assign({}, hit, {name: hit._highlightResult.name.value, category: hit._highlightResult.category.value})
+      console.log content.hits[0]
       @setState apps: apps, isLoading: false
 
   addApp: (app) =>
