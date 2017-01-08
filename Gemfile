@@ -16,6 +16,8 @@ gem 'ruby-progressbar'
 gem 'metamagic'
 gem 'validate_url'
 gem 'algoliasearch-rails'
+gem 'kaminari'
+gem 'api-pagination'
 
 # Assets
 gem 'sass-rails', '~> 5.0'

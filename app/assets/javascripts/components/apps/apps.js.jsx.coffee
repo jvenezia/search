@@ -2,17 +2,33 @@ class @Apps extends React.Component
   constructor: (props) ->
     super props
     algoliaIndex = algoliasearch(@props.algolia.applicationId, @props.algolia.apiKey).initIndex(@props.algolia.indexName)
-    @state = {apps: [], isLoading: false, algoliaIndex: algoliaIndex}
+    @state = {apps: [], page: 1, isLoading: false, isLoadingNextApps: false, algoliaIndex: algoliaIndex}
 
   componentDidMount: ->
+    window.addEventListener('scroll', this.handleScroll)
     @loadApps()
 
+  handleScroll: =>
+    scrollPosition = window.pageYOffset + window.innerHeight
+    documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight)
+
+    if !@state.query && !@state.isLoadingNextApps && scrollPosition >= documentHeight - 2000
+      @loadNextApps @state.page + 1
+
   loadApps: =>
-    @setState isLoading: true
-    fetch('/api/1/apps').then((response) ->
+    @setState isLoading: true, query: '', page: 1
+    fetch('/api/1/apps').then((response) =>
       response.json()
     ).then((apps) =>
       @setState apps: apps, isLoading: false
+    )
+
+  loadNextApps: (page) =>
+    @setState isLoadingNextApps: true, isLoading: true
+    fetch("/api/1/apps?page=#{page}").then((response) =>
+      response.json()
+    ).then((apps) =>
+      @setState apps: @state.apps.concat(apps), isLoadingNextApps: false, isLoading: false, page: @state.page + 1
     )
 
   searchApps: (query) =>
@@ -38,10 +54,13 @@ class @Apps extends React.Component
     else if @state.query
       apps = `<div className="empty">No apps matches your search.</div>`
 
+    nextAppsLoader = `<div className="next-apps-loader"><i className="fa fa-spinner fa-pulse"></i></div>` if @state.isLoadingNextApps
+
     `<div className="container">
         <div id="apps">
             <AppSearch searchApps={this.searchApps} loadApps={this.loadApps} isLoading={this.state.isLoading}/>
             <AppForm addApp={this.addApp}/>
             {apps}
+            {nextAppsLoader}
         </div>
     </div>`

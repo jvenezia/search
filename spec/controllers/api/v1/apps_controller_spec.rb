@@ -8,12 +8,11 @@ describe Api::V1::AppsController, type: :controller do
   describe 'GET index' do
     let!(:apps) { create_list :app, 2 }
 
-    before { expect(App).to receive(:order).with(created_at: :desc).and_return(App) }
-    before { expect(App).to receive(:limit).with(20).and_return(apps) }
+    before { expect(App).to receive(:order).with(created_at: :desc).and_return(apps) }
 
     before { get :index }
 
-    it { should respond_with :success }
+    it { should respond_with :partial_content }
     it { expect(json_response.size).to eq 2 }
     it { expect(json_response.first['name']).to eq apps.first.name }
   end

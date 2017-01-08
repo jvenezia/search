@@ -1,7 +1,11 @@
 module Api::V1
   class AppsController < ApiController
+    PER_PAGE = 20.freeze
+
     def index
-      @apps = App.order(created_at: :desc).limit(20)
+      @apps = App.order(created_at: :desc)
+      @apps = paginate @apps, per_page: PER_PAGE
+      render status: :partial_content
     end
 
     def create
