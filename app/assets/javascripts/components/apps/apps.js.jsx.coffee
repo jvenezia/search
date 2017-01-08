@@ -2,7 +2,10 @@ class @Apps extends React.Component
   constructor: (props) ->
     super props
     algoliaIndex = algoliasearch(@props.algolia.applicationId, @props.algolia.apiKey).initIndex(@props.algolia.indexName)
-    @state = {apps: [], page: 1, isLoading: false, isLoadingNextApps: false, algoliaIndex: algoliaIndex}
+    @state = {
+      apps: [], page: 1, algoliaIndex: algoliaIndex,
+      isLoading: false, isLoadingNextApps: false, displayScrollTopButton: false
+    }
 
   componentDidMount: ->
     window.addEventListener('scroll', this.handleScroll)
@@ -14,6 +17,14 @@ class @Apps extends React.Component
 
     if !@state.query && !@state.isLoadingNextApps && scrollPosition >= documentHeight - 1000
       @loadNextApps @state.page + 1
+
+    if scrollPosition > 2000
+      @setState {displayScrollTopButton: true}
+    else
+      @setState {displayScrollTopButton: false}
+
+  scrollTop: =>
+    window.scrollTo(0, 0)
 
   loadApps: =>
     @setState isLoading: true, query: '', page: 1
@@ -57,11 +68,14 @@ class @Apps extends React.Component
 
     nextAppsLoader = `<div className="next-apps-loader"><i className="fa fa-spinner fa-pulse"></i></div>` unless @state.query
 
+    scrollTopButton = `<div className="scroll-top-button" onClick={this.scrollTop}><i className="fa fa-arrow-up"></i>Top</div>` if @state.displayScrollTopButton
+
     `<div className="container">
         <div id="apps">
             <AppSearch searchApps={this.searchApps} loadApps={this.loadApps} isLoading={this.state.isLoading}/>
             <AppForm addApp={this.addApp}/>
             {apps}
             {nextAppsLoader}
+            {scrollTopButton}
         </div>
     </div>`
