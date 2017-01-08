@@ -33,6 +33,7 @@ gem 'compass-rails'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-algoliasearch'
+  gem 'rails-assets-fetch'
 end
 
 group :development, :test do

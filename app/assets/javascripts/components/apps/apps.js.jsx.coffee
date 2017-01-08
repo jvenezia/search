@@ -12,7 +12,7 @@ class @Apps extends React.Component
     scrollPosition = window.pageYOffset + window.innerHeight
     documentHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight)
 
-    if !@state.query && !@state.isLoadingNextApps && scrollPosition >= documentHeight - 2000
+    if !@state.query && !@state.isLoadingNextApps && scrollPosition >= documentHeight - 1000
       @loadNextApps @state.page + 1
 
   loadApps: =>

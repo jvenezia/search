@@ -163,6 +163,7 @@ GEM
       railties (= 5.0.1)
       sprockets-rails (>= 2.0.0)
     rails-assets-algoliasearch (3.20.3)
+    rails-assets-fetch (2.0.1)
     rails-dom-testing (2.0.2)
       activesupport (>= 4.2.0, < 6.0)
       nokogiri (~> 1.6)
@@ -271,6 +272,7 @@ DEPENDENCIES
   puma (~> 3.0)
   rails (~> 5.0.1)
   rails-assets-algoliasearch!
+  rails-assets-fetch!
   react-rails
   rspec-rails (~> 3.5)
   ruby-progressbar
