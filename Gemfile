@@ -30,6 +30,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'font-awesome-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'compass-rails'
+gem 'newrelic_rpm'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-algoliasearch'
