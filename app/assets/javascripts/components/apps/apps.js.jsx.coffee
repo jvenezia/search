@@ -54,7 +54,7 @@ class @Apps extends React.Component
     else if @state.query
       apps = `<div className="empty">No apps matches your search.</div>`
 
-    nextAppsLoader = `<div className="next-apps-loader"><i className="fa fa-spinner fa-pulse"></i></div>` if @state.isLoadingNextApps
+    nextAppsLoader = `<div className="next-apps-loader"><i className="fa fa-spinner fa-pulse"></i></div>` unless @state.query
 
     `<div className="container">
         <div id="apps">
