@@ -9,10 +9,16 @@ class App < ApplicationRecord
   validates :image, url: {no_local: true, allow_nil: true, allow_blank: true}
 
   before_validation :clean_urls
+  before_validation :clean_names
 
   def clean_urls
     link.prepend('http://') if link.present? && !link.start_with?('http')
     image.prepend('http://') if image.present? && !image.start_with?('http')
+  end
+
+  def clean_names
+    self.name = ActionView::Base.full_sanitizer.sanitize(name)&.strip
+    self.category = ActionView::Base.full_sanitizer.sanitize(category)&.strip
   end
 
   algoliasearch index_name: "#{ENV['ALGOLIA_INDEX_NAME']}_#{Rails.env}", disable_indexing: Rails.env.test? do

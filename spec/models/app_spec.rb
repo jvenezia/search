@@ -28,4 +28,11 @@ describe App do
     it { should allow_value('').for(:image) }
     it { should_not allow_value('zelda').for(:image) }
   end
+
+  describe 'clean_names' do
+    let(:app) { create :app, name: '<script>alert("Hello!")</script> Awesome', category: '<b>New</b> App' }
+
+    it { expect(app.name).to eq 'Awesome' }
+    it { expect(app.category).to eq 'New App' }
+  end
 end
