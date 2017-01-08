@@ -58,8 +58,7 @@ class @AppForm extends React.Component
           </div>
       </form>`
     else
-      `<div id="app-form">
-          <div className="actions">
-              <button type="button" onClick={this.show} className="btn btn-primary">Add an app</button>
-          </div>
+      `<div id="app-form-button" onClick={this.show}>
+          <i className="fa fa-plus"></i>
+          Add an app
       </div>`

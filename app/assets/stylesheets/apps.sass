@@ -1,3 +1,7 @@
+$item-background: #4a535d
+$item-background-hover: #404750
+$item-color: #C5C9CC
+
 #apps
   margin-top: 40px
   #app-search
@@ -17,13 +21,27 @@
         top: 10px
       &.fa-search
         top: 9px
-  #app-form
-    background: #4a535d
+  #app-form-button
+    background: $item-background
     padding: 10px
-    @include border-radius(5px)
     margin-bottom: 30px
+    display: block
+    @include border-radius(5px)
+    color: $item-color
+    font-size: 18px
+    i
+      font-size: 16px
+      margin-right: 6px
+    &:hover, &:focus
+      cursor: pointer
+      background: $item-background-hover
+  #app-form
+    background: $item-background
+    padding: 10px
+    margin-bottom: 30px
+    @include border-radius(5px)
     .actions
-      text-align: center
+      text-align: right
       button
         margin-left: 8px
     input
@@ -36,10 +54,10 @@
       padding: 10px 100px 10px 10px
       margin-bottom: 20px
       display: block
-      background: #4a535d
+      background: $item-background
       @include border-radius(5px)
       .name
-        color: #C5C9CC
+        color: $item-color
         font-size: 18px
         white-space: nowrap
         overflow: hidden
@@ -61,7 +79,7 @@
         background: #585853
       &:hover, &:focus
         text-decoration: none
-        background: #404750
+        background: $item-background-hover
         cursor: pointer
         &.highlight
           background: #4b4b47
