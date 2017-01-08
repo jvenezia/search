@@ -16,7 +16,7 @@ class @Apps extends React.Component
     )
 
   searchApps: (query) =>
-    @setState isLoading: true
+    @setState isLoading: true, query: query
     @state.algoliaIndex.search query, (error, content) =>
       apps = content.hits
       @setState apps: apps, isLoading: false
@@ -32,8 +32,11 @@ class @Apps extends React.Component
     @setState apps: apps
 
   render: ->
-    apps = @state.apps.map (app) =>
-      React.createElement App, key: app.id, app: app, removeApp: @removeApp
+    if @state.apps.length > 0
+      apps = @state.apps.map (app) =>
+        React.createElement App, key: app.id, app: app, removeApp: @removeApp
+    else if @state.query
+      apps = `<div className="empty">No apps matches your search.</div>`
 
     `<div className="container">
         <div id="apps">
