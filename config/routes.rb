@@ -6,4 +6,6 @@ Rails.application.routes.draw do
       resources :apps, only: [:index, :create, :destroy]
     end
   end
+
+  get 'favicon.ico' => redirect { "http:#{ActionController::Base.helpers.asset_path('favicon.ico')}" }
 end
