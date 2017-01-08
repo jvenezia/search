@@ -15,7 +15,7 @@ class App < ApplicationRecord
     image.prepend('http://') if image.present? && !image.start_with?('http')
   end
 
-  algoliasearch index_name: "search_#{Rails.env}", disable_indexing: Rails.env.test? do
+  algoliasearch index_name: "#{ENV['ALGOLIA_INDEX_NAME']}_#{Rails.env}", disable_indexing: Rails.env.test? do
     attribute :id, :name, :category, :link, :image, :rank, :created_at, :updated_at
     searchableAttributes %w(name category)
     customRanking ['asc(rank)']
