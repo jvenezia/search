@@ -3,14 +3,11 @@ class @App extends React.Component
     super props
     @defaultImageUrl = '/default_app_icon.png'
 
-  removeApp: (event) =>
+  deleteApp: (event) =>
     event.preventDefault() if event
     if confirm("Remove #{@props.app.name}?")
-      fetch("/api/1/apps/#{@props.app.id}",
-        method: 'DELETE'
-      ).then((app) =>
-        @props.removeApp(@props.app)
-      )
+      @props.app.delete
+        done: => @props.deleteApp(@props.app)
 
   setDefaultImage: (event) =>
     event.target.src = @defaultImageUrl
@@ -30,7 +27,7 @@ class @App extends React.Component
             <img src={imageUrl} onError={this.setDefaultImage}/>
         </a>
         <div className='actions'>
-            <a className="remove" onClick={this.removeApp}>
+            <a className="remove" onClick={this.deleteApp}>
                 <i className="fa fa-remove"></i>
                 Remove
             </a>

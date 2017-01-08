@@ -48,14 +48,13 @@ class @Apps extends React.Component
     apps.unshift(app)
     @setState apps: apps
 
-  removeApp: (appToRemove) =>
-    apps = @state.apps.filter (app) -> app.id != appToRemove.id
+  deleteApp: (appToDelete) =>
+    apps = @state.apps.filter (app) -> app.id != appToDelete.id
     @setState apps: apps
 
   render: ->
     if @state.apps.length > 0
-      apps = @state.apps.map (app) =>
-        React.createElement App, key: app.id, app: app, removeApp: @removeApp
+      apps = @state.apps.map (app) => React.createElement App, key: app.id, app: app, deleteApp: @deleteApp
     else if @state.query
       apps = `<div className="empty">No apps matches your search.</div>`
 
