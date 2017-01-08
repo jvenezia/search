@@ -1,13 +1,19 @@
 class @AppSearch extends React.Component
   constructor: (props) ->
     super props
+    @state = {changeTimeout: null}
 
   handleChange: (event) =>
-    query = event.target.value
-    if query == ''
-      @props.loadApps()
-    else
-      @props.searchApps(event.target.value)
+    event.persist()
+    changeTimeout = setTimeout =>
+      query = event.target.value
+      if query == ''
+        @props.loadApps()
+      else
+        @props.searchApps(event.target.value)
+    , 300
+    clearTimeout @state.changeTimeout
+    @setState changeTimeout: changeTimeout
 
   render: ->
     if @props.isLoading
