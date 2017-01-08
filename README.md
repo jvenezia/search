@@ -20,7 +20,7 @@ Feel free to play with it, the database is reset every day.
         cp config/database.yml.example config/database.yml
         rake db:create db:migrate
         
-4. Setup your algolia credentials and other variables in `.env` file. ALGOLIA_INDEX_NAME will be prepended with the current environment (eg: `search_production`).
+4. Setup your algolia credentials and other variables in `.env` file. `ALGOLIA_INDEX_NAME` will be prepended with the current environment (eg: `search_production`).
 
         PORT=3000
         RAILS_ENV=development
