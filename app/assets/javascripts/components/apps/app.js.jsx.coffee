@@ -1,6 +1,7 @@
 class @App extends React.Component
   constructor: (props) ->
     super props
+    @defaultImageUrl = '/default_app_icon.png'
     @state = {app: props.app}
 
   remove: (event) =>
@@ -12,17 +13,23 @@ class @App extends React.Component
         @props.removeApp(@state.app)
       )
 
-  removeDeadImage: (event) =>
-    event.target.src = ''
+  setDefaultImage: (event) =>
+    event.target.src = @defaultImageUrl
 
   render: ->
+    console.log @state.app.image
+    if @state.app.image
+      imageUrl = @state.app.image
+    else
+      imageUrl = @defaultImageUrl
+
     className = 'app'
     className = className.concat(' highlight') if @state.app.highlight
     `<div className="app-wrapper">
         <a className={className} href={this.state.app.link} target="_blank">
             <div className="name">{this.state.app.name}</div>
             <div className="category">{this.state.app.category}</div>
-            <img src={this.state.app.image} onError={this.removeDeadImage}/>
+            <img src={imageUrl} onError={this.setDefaultImage}/>
         </a>
         <div className='actions'>
             <a className="remove" onClick={this.remove}>
