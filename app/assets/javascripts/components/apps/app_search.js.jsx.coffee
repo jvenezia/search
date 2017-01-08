@@ -11,7 +11,7 @@ class @AppSearch extends React.Component
         @props.loadApps()
       else
         @props.searchApps(event.target.value)
-    , 300
+    , 200
     clearTimeout @state.changeTimeout
     @setState changeTimeout: changeTimeout
 
