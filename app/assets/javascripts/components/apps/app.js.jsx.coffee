@@ -5,7 +5,7 @@ class @App extends React.Component
 
   remove: (event) =>
     event.preventDefault() if event
-    if confirm('Remove app?')
+    if confirm("Remove #{@state.app.name}?")
       fetch("/api/1/apps/#{@state.app.id}",
         method: 'DELETE'
       ).then((app) =>
