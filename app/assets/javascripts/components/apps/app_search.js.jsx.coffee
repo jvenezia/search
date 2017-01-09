@@ -10,7 +10,7 @@ class @AppSearch extends React.Component
       if query == ''
         @props.loadApps()
       else
-        @props.searchApps(event.target.value)
+        @props.loadApps query: event.target.value
     , 200
     clearTimeout @state.changeTimeout
     @setState changeTimeout: changeTimeout
