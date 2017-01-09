@@ -20,11 +20,13 @@ class @Apps extends React.Component
     smoothScroll.animateScroll(0)
 
   loadApps: (options = {}) =>
-    @setState isLoadingNextApps: true, isLoading: true, page: (options.page || 1), query: (options.query || '')
-    if @state.query
-      AppModel.search @state.query, page: @state.page, done: @addApps
+    page = options.page || 1
+    query = options.query || ''
+    @setState {isLoadingNextApps: true, isLoading: true, page: page, query: query}
+    if query
+      AppModel.search query, page: page, done: @addApps
     else
-      AppModel.all page: @state.page, done: @addApps
+      AppModel.all page: page, done: @addApps
 
   addApps: (apps, maxAppCount) =>
     apps = @state.apps.concat(apps) if @state.page > 1
@@ -52,7 +54,7 @@ class @Apps extends React.Component
 
     `<div className="container">
         <div id="apps">
-            <AppSearch loadApps={this.loadApps} isLoading={this.state.isLoading}/>
+            <AppSearchInput loadApps={this.loadApps} isLoading={this.state.isLoading}/>
             <AppForm addApp={this.addApp}/>
             {apps}
             {nextAppsLoader}
